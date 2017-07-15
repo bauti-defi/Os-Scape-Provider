@@ -275,7 +275,7 @@ public class GameObject implements Identifiable, Nameable, Locatable, Interactab
 			if (isValid() && getName() != null && getName().toLowerCase().contains("fishing"))
 				tileByte = 0;
 			int z = tileByte == 1 ? 210 : 0;
-			Object[] renderable = new Object[]{getRender(), null};
+			Object[] renderable = new Object[] {getRender(), null};
 			if (instanceOf(renderable[0])) {
 				return new Model(new Model(renderable[0]), 0, gridX, gridY, z);
 			}

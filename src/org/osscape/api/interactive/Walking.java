@@ -11,10 +11,8 @@ public class Walking {
 	}
 
 	public static int[][] getCollisionFlags(int plane) {
-
 		final Object collisionMap = ((Object[]) Engine.getReflectionEngine().getFieldHookValue("getCollisionMaps", null))[plane];
 		return (int[][]) Engine.getReflectionEngine().getFieldHookValue("getFlags", collisionMap);
-
 	}
 
 }

@@ -7,14 +7,14 @@ import java.awt.*;
  */
 public interface Interactable {
 
-	public Point getInteractPoint();
+	Point getInteractPoint();
 
-	public boolean interact(final String action, final String option);
+	boolean interact(final String action, final String option);
 
-	public boolean interact(final String action);
+	boolean interact(final String action);
 
-	public boolean click(final boolean left);
+	boolean click(final boolean left);
 
-	public boolean click();
+	boolean click();
 
 }

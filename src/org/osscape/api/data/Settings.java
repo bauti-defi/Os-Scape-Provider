@@ -14,7 +14,6 @@ public class Settings {
 	}
 
 	public static int[] getAll() {
-
 		return (int[]) Engine.getReflectionEngine().getFieldHookValue("GameSettings", null);
 	}
 

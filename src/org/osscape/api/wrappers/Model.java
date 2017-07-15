@@ -61,7 +61,7 @@ public class Model extends org.bot.provider.osrs.models.Model {
 					-yPoints[indices3[i]] + this.getZ());
 			if (p1 != null && p2 != null && p3 != null) {
 				if (p1.x >= 0 && p2.x >= 0 && p3.x >= 0) {
-					polygons.add(new Polygon(new int[]{p1.x, p2.x, p3.x}, new int[]{p1.y, p2.y, p3.y}, 3));
+					polygons.add(new Polygon(new int[] {p1.x, p2.x, p3.x}, new int[] {p1.y, p2.y, p3.y}, 3));
 				}
 			}
 		}

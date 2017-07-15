@@ -12,6 +12,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class GameObjects {
+
 	public static GameObject[] getAll() {
 		return getAll(new Filter<GameObject>() {
 			@Override

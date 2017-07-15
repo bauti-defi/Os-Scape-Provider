@@ -19,7 +19,6 @@ public class ModelInjector implements Injector {
 
 	@SuppressWarnings("deprecation")
 	private static void callBack(MethodNode mn) {
-
 		InsnList nl = new InsnList();
 		boolean b = false;
 		for (int i = 0; i < mn.instructions.size(); i++) {
@@ -63,7 +62,6 @@ public class ModelInjector implements Injector {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run(ClassNode classNode) {
-
 		for (MethodNode methodNode : (List<MethodNode>) classNode.methods)
 			for (AbstractInsnNode abstractInsn : methodNode.instructions.toArray()) {
 				if (abstractInsn instanceof MethodInsnNode) {

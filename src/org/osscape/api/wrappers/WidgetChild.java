@@ -77,7 +77,6 @@ public class WidgetChild implements Interactable {
 		if (raw == null) {
 			return null;
 		}
-
 		int uid = getParentId();
 		if (uid == -1) {
 			int groupIdx = getId() >>> 16;
@@ -96,7 +95,6 @@ public class WidgetChild implements Interactable {
 		}
 		int parent = uid >> 16;
 		int child = uid & 0xffff;
-
 		return Widgets.get(parent, child);
 	}
 
@@ -173,55 +171,62 @@ public class WidgetChild implements Interactable {
 	}
 
 	public int getScrollX() {
-		if (raw == null)
+		if (raw == null) {
 			return -1;
+		}
 		return (int) Engine.getReflectionEngine().getFieldHookValue("ScrollX", raw);
 	}
 
 	public int getScrollY() {
-		if (raw == null)
+		if (raw == null) {
 			return -1;
+		}
 		return (int) Engine.getReflectionEngine().getFieldHookValue("ScrollY", raw);
 	}
 
 
 	public int[] getWidgetPositionX() {
-		if (raw == null)
+		if (raw == null) {
 			return null;
+		}
 		return (int[]) Engine.getReflectionEngine().getFieldHookValue("WidgetPositionX", raw);
 	}
 
 	public int[] getWidgetPositionY() {
-		if (raw == null)
+		if (raw == null) {
 			return null;
+		}
 		return (int[]) Engine.getReflectionEngine().getFieldHookValue("WidgetPositionY", raw);
 	}
 
 	public int getType() {
-		if (raw == null)
+		if (raw == null) {
 			return -1;
-
+		}
 		return (int) Engine.getReflectionEngine().getFieldHookValue("WidgetType", raw);
 
 	}
 
 
 	public int getParentId() {
-		if (raw == null)
+		if (raw == null) {
 			return -1;
+		}
 		return (int) Engine.getReflectionEngine().getFieldHookValue("ParentID", raw);
 	}
 
 
 	public int getItemStack() {
-		if (raw == null)
+		if (raw == null) {
 			return -1;
+		}
 		return (int) Engine.getReflectionEngine().getFieldHookValue("ItemAmount", raw);
 	}
 
 	public int getStaticPosition() {
-		if (raw == null)
+		if (raw == null) {
 			return -1;
+		}
 		return (int) Engine.getReflectionEngine().getFieldHookValue("BoundsIndex", raw);
 	}
 
@@ -230,8 +235,9 @@ public class WidgetChild implements Interactable {
 	}
 
 	public int getItemId() {
-		if (raw == null)
+		if (raw == null) {
 			return -1;
+		}
 		return (int) Engine.getReflectionEngine().getFieldHookValue("WidgetItemID", raw);
 	}
 
@@ -250,8 +256,9 @@ public class WidgetChild implements Interactable {
 	public WidgetChild[] getChildren() {
 		List<WidgetChild> list = new ArrayList<>();
 		Object[] children = (Object[]) Engine.getReflectionEngine().getFieldHookValue("Children", raw);
-		if (children == null)
+		if (children == null) {
 			return list.toArray(new WidgetChild[list.size()]);
+		}
 		for (int i = 0; i < children.length; i++) {
 			list.add(new WidgetChild(children[i], i));
 		}
@@ -260,8 +267,9 @@ public class WidgetChild implements Interactable {
 
 	public WidgetChild getChild(int index) {
 		Object[] children = (Object[]) Engine.getReflectionEngine().getFieldHookValue("Children", raw);
-		if (children == null || children != null && children.length <= index)
+		if (children == null || children != null && children.length <= index) {
 			return new WidgetChild(null, index);
+		}
 		return new WidgetChild(children[index], index);
 	}
 
@@ -297,7 +305,6 @@ public class WidgetChild implements Interactable {
 		if (this.getActions() == null || this.getActions().length == 0) {
 			return false;
 		}
-
 		for (int i = 0; i < this.getActions().length; i++) {
 			if (this.getActions()[i] != null && this.getActions()[i].contains(phrase)) {
 				return true;
@@ -312,8 +319,9 @@ public class WidgetChild implements Interactable {
 		while (System.currentTimeMillis() - start < 2000) {
 
 			Point ip = null;
-			if (this != null)
+			if (this != null) {
 				ip = this.getInteractPoint();
+			}
 			if (Mouse.getLocation().distance(ip) <= 5) {
 				ip = this.getInteractPoint();
 				Mouse.move(ip);
@@ -345,8 +353,9 @@ public class WidgetChild implements Interactable {
 				if (Menu.isOpen() && Menu.contains(action, this.getName())) {
 					int index = Menu.index(action, this.getName());
 					Point p = Menu.getSuitablePoint(index);
-					if (p.x > 5 && p.y > 5)
+					if (p.x > 5 && p.y > 5) {
 						Mouse.move(p.x, p.y);
+					}
 					if (Mouse.getLocation().distance(p) <= Random.nextInt(1, 5)) {
 						Condition.sleep(Random.nextInt(60, 100));
 						Mouse.click(true);
@@ -355,8 +364,9 @@ public class WidgetChild implements Interactable {
 				} else if (Menu.isOpen() && !Menu.contains(action, this.getName())) {
 					int index = Menu.index("Cancel");
 					Point p = Menu.getSuitablePoint(index);
-					if (p.x > 5 && p.y > 5)
+					if (p.x > 5 && p.y > 5) {
 						Mouse.move(p.x, p.y);
+					}
 					if (Mouse.getLocation().distance(p) <= Random.nextInt(1, 5)) {
 						Condition.sleep(Random.nextInt(60, 100));
 						Mouse.click(true);
@@ -365,7 +375,6 @@ public class WidgetChild implements Interactable {
 				}
 			}
 		}
-
 		return false;
 
 	}
@@ -412,11 +421,13 @@ public class WidgetChild implements Interactable {
 		}
 
 		final Object getNext() {
-			if (hashTable == null)
+			if (hashTable == null) {
 				return null;
+			}
 			final Object[] buckets = (Object[]) Engine.getReflectionEngine().getFieldHookValue("Buckets", hashTable);
-			if (buckets == null)
+			if (buckets == null) {
 				return null;
+			}
 			if (currindex > 0 && curr != buckets[currindex - 1]) {
 				final Object node = curr;
 				if (node == null) {

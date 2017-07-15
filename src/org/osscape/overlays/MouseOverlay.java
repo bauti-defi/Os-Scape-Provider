@@ -65,7 +65,7 @@ public class MouseOverlay extends ScreenOverlay<Object> {
 				cursorImg, new Point(0, 0), "blank cursor");
 
 			/*Applet applet = (Applet) Engine.getGameComponent();
-		    applet.setCursor(blankCursor);*/
+			applet.setCursor(blankCursor);*/
 		Color Purple = Color.WHITE;
 		Color LowPurple = Color.WHITE;
 		Color Indigo = Color.BLACK.darker();

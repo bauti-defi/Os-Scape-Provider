@@ -1,13 +1,14 @@
-package org.osscape.api.data;
+package org.osscape.api.wrappers;
 
 import org.bot.component.inputs.Keyboard;
 import org.bot.util.Condition;
 import org.bot.util.Filter;
 import org.bot.util.Random;
 import org.bot.util.Utilities;
+import org.osscape.api.data.Game;
+import org.osscape.api.data.Tab;
 import org.osscape.api.interactive.Item;
 import org.osscape.api.interactive.Widgets;
-import org.osscape.api.wrappers.WidgetChild;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

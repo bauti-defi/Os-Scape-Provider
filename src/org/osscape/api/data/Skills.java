@@ -2,7 +2,11 @@ package org.osscape.api.data;
 
 import org.bot.Engine;
 
-public class Skills {
+public enum Skills {
+
+	ATTACK(0), DEFENSE(1), STRENGTH(2), HITPOINTS(3), RANGE(4), PRAYER(5),
+	MAGIC(6), COOKING(7), WOODCUTTING(8), FLETCHING(9), FISHING(10), FIREMAKING(11), CRAFTING(12), SMITHING(13), MINING(14), HERBLORE(15), AGILITY(16), THIEVING(17),
+	SLAYER(18), FARMING(19), RUNECRAFTING(20), HUNTER(21), CONSTRUCTION(22);
 
 	private static final int[] XP_TABLE = {0, 0, 83, 174, 276, 388, 512, 650,
 			801, 969, 1154, 1358, 1584, 1833, 2107, 2411, 2746, 3115, 3523,
@@ -20,68 +24,16 @@ public class Skills {
 			26068632, 28782069, 31777943, 35085654, 38737661, 42769801,
 			47221641, 52136869, 57563718, 63555443, 70170840, 77474828,
 			85539082, 94442737, 104273167};
-	public static int NUM_SKILLS = 23;
-	public static int ATTACK = 0;
-	public static int DEFENSE = 1;
-	public static int STRENGTH = 2;
-	public static int HITPOINTS = 3;
-	public static int RANGE = 4;
-	public static int PRAYER = 5;
-	public static int MAGIC = 6;
-	public static int COOKING = 7;
-	public static int WOODCUTTING = 8;
-	public static int FLETCHING = 9;
-	public static int FISHING = 10;
-	public static int FIREMAKING = 11;
-	public static int CRAFTING = 12;
-	public static int SMITHING = 13;
-	public static int MINING = 14;
-	public static int HERBLORE = 15;
-	public static int AGILITY = 16;
-	public static int THIEVING = 17;
-	public static int SLAYER = 18;
-	public static int FARMING = 19;
-	public static int RUNECRAFTING = 20;
-	public static int HUNTER = 21;
-	public static int CONSTRUCTION = 22;
+	private int index;
 
-	private static int[] getSkillExpArray() {
-		return (int[]) Engine.getReflectionEngine().getFieldHookValue("Experiences", null);
-	}
-
-	private static int[] getSkillLevelArray() {
-		return (int[]) Engine.getReflectionEngine().getFieldHookValue("CurrentLevels", null);
-	}
-
-	private static int[] getRealSkillLevelArray() {
-		return (int[]) Engine.getReflectionEngine().getFieldHookValue("RealLevels", null);
-	}
-
-	public static int getRealLevel(int skill) {
-		if (getRealSkillLevelArray() == null)
-			return 99;
-
-		return getRealSkillLevelArray()[skill];
-	}
-
-	public static int getCurrentLevel(int skill) {
-		if (getSkillLevelArray() == null)
-			return 99;
-
-		return getSkillLevelArray()[skill];
-	}
-
-	public static int getExperience(int skill) {
-		if (getSkillLevelArray() == null)
-			return 99;
-
-		return getSkillExpArray()[skill];
+	Skills(int index) {
+		this.index = index;
 	}
 
 	public static int getExpAtLevel(int level) {
-		if (level > 120)
+		if (level > 120) {
 			return -1;
-
+		}
 		return XP_TABLE[level];
 	}
 
@@ -91,11 +43,46 @@ public class Skills {
 				return i;
 			}
 		}
-
 		return XP_TABLE[XP_TABLE.length - 1];
 	}
 
-	public static int expTilNextLevel(int skill) {
-		return getExpAtLevel(getRealLevel(skill) + 1) - getExperience(skill);
+	private int[] getSkillExpArray() {
+		return (int[]) Engine.getReflectionEngine().getFieldHookValue("Experiences", null);
+	}
+
+	private int[] getSkillLevelArray() {
+		return (int[]) Engine.getReflectionEngine().getFieldHookValue("CurrentLevels", null);
+	}
+
+	private int[] getRealSkillLevelArray() {
+		return (int[]) Engine.getReflectionEngine().getFieldHookValue("RealLevels", null);
+	}
+
+	public int getRealLevel() {
+		int[] realLevels = getRealSkillLevelArray();
+		if (realLevels == null) {
+			return 99;
+		}
+		return realLevels[index];
+	}
+
+	public int getCurrentLevel() {
+		int[] skillLevelArray = getSkillLevelArray();
+		if (skillLevelArray == null) {
+			return 99;
+		}
+		return skillLevelArray[index];
+	}
+
+	public int getExperience() {
+		int[] skillLevelArray = getSkillLevelArray();
+		if (skillLevelArray == null) {
+			return 99;
+		}
+		return skillLevelArray[index];
+	}
+
+	public int getExpTillNextLevel() {
+		return getExpAtLevel(getRealLevel() + 1) - getExperience();
 	}
 }

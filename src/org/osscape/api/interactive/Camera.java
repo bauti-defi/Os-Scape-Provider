@@ -17,11 +17,11 @@ public class Camera {
 
 
 	public static int angleTo(final int degrees) {
-		int ca = getCameraYaw();
-		if (ca < degrees) {
-			ca += 360;
+		int cameraYaw = getCameraYaw();
+		if (cameraYaw < degrees) {
+			cameraYaw += 360;
 		}
-		int da = ca - degrees;
+		int da = cameraYaw - degrees;
 		if (da > 180) {
 			da -= 360;
 		}
@@ -73,7 +73,6 @@ public class Camera {
 			return true;
 		}
 		final boolean l = a > 5;
-
 		Keyboard.press(l ? KeyEvent.VK_LEFT : KeyEvent.VK_RIGHT);
 		final float dir = Math.signum(angleTo(d));
 		for (; ; ) {

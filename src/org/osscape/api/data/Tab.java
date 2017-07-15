@@ -28,7 +28,7 @@ public enum Tab {
 
 	String name;
 
-	private Tab(String name) {
+	Tab(String name) {
 		this.name = name;
 	}
 
@@ -40,9 +40,7 @@ public enum Tab {
 		if (!Game.isLoggedIn() || isOpen() || getWidgetChild() == null)
 			return true;
 		getWidgetChild().click(true);
-
 		for (int i = 0; i < 20 && !isOpen(); i++, Condition.sleep(Random.nextInt(100, 150))) ;
-
 		return isOpen();
 	}
 
@@ -63,8 +61,6 @@ public enum Tab {
 				}
 			}
 		}
-
-
 		return null;
 	}
 

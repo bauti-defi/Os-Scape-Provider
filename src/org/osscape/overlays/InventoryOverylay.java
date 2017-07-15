@@ -3,8 +3,8 @@ package org.osscape.overlays;
 import org.bot.component.screen.ScreenOverlay;
 import org.bot.util.Filter;
 import org.osscape.api.data.Game;
-import org.osscape.api.data.Inventory;
 import org.osscape.api.interactive.Item;
+import org.osscape.api.wrappers.Inventory;
 
 import java.awt.*;
 
@@ -34,7 +34,6 @@ public class InventoryOverylay extends ScreenOverlay<Item> {
 
 		for (Item i : refresh()) {
 			if (i.isValid()) {
-				System.out.println(i.getName());
 				graphics.setColor(Color.GREEN);
 				Point point = i.getCentralPoint();
 				graphics.setFont(new Font("default", Font.BOLD, 14));
