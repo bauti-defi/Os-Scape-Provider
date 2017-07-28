@@ -11,43 +11,10 @@ import java.util.Hashtable;
  * Created by Ethan on 7/9/2017.
  */
 public class Utilities {
-	private static boolean debugNpcs, debugPlayers, basicinfo, debugInventory;
 	private static Hashtable<Object, Model> modelCache = new Hashtable<>();
 
 	public static Hashtable<Object, Model> getModelCache() {
 		return modelCache;
-	}
-
-	public static boolean isDebugInventory() {
-		return debugInventory;
-	}
-
-	public static void setDebugInventory(boolean debugInventory) {
-		Utilities.debugInventory = debugInventory;
-	}
-
-	public static boolean isDebugNpcs() {
-		return debugNpcs;
-	}
-
-	public static void setDebugNpcs(boolean debugNpcs) {
-		Utilities.debugNpcs = debugNpcs;
-	}
-
-	public static boolean isDebugPlayers() {
-		return debugPlayers;
-	}
-
-	public static void setDebugPlayers(boolean debugPlayers) {
-		Utilities.debugPlayers = debugPlayers;
-	}
-
-	public static boolean isBasicinfo() {
-		return basicinfo;
-	}
-
-	public static void setBasicinfo(boolean basicinfo) {
-		Utilities.basicinfo = basicinfo;
 	}
 
 	public static boolean inViewport(final Point p) {

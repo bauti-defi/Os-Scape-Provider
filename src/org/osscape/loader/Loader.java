@@ -10,9 +10,11 @@ import org.bot.util.injection.Injector;
 import org.bot.util.reflection.ReflectedClass;
 import org.bot.util.reflection.ReflectedField;
 import org.osscape.api.injectables.ModelInjector;
-import org.osscape.overlays.*;
+import org.osscape.overlays.BasicInfoDebugger;
+import org.osscape.overlays.InventoryOverylay;
+import org.osscape.overlays.NPCInfoOverlay;
+import org.osscape.overlays.PlayerInfoOverlay;
 import org.osscape.parameters.OSParameters;
-import org.osscape.ui.menu.ePopUpMenu;
 
 import javax.swing.*;
 import java.applet.Applet;
@@ -24,18 +26,13 @@ import java.util.List;
 /**
  * Created by Ethan on 7/6/2017.
  */
-@ServerManifest(author = "Ethan", serverName = "OS-Scape", info = "Os-Scape botting that will blow your god damn mind.", type = Applet.class, version = 0.1D, revision = Revision.OSRS, hookType = HookType.XML)
+@ServerManifest(author = "Ethan & Bautista", serverName = "OS-Scape", info = "Os-Scape botting that will blow your god damn mind.", type = Applet.class, version = 0.1D, revision = Revision.OSRS, hookType = HookType.XML)
 public class Loader extends ServerLoader<Applet> {
 	private JPanel panel;
 	private OSParameters parameters;
 
 	public Loader() throws IOException {
 		super("https://cdn.os-scape.com/clients/game.jar", "https://pastebin.com/raw/A1uwxUhj", "OS-Scape");
-	}
-
-	@Override
-	public JPopupMenu getPopUpMenu() {
-		return new ePopUpMenu();
 	}
 
 	@Override
@@ -47,9 +44,8 @@ public class Loader extends ServerLoader<Applet> {
 
 	@Override
 	public List<ScreenOverlay> getOverlays() {
-		List<ScreenOverlay> overlays = new ArrayList<>();
+		List<ScreenOverlay> overlays = super.getOverlays();
 		overlays.add(new PlayerInfoOverlay());
-		overlays.add(new MouseOverlay());
 		overlays.add(new NPCInfoOverlay());
 		overlays.add(new BasicInfoDebugger());
 		overlays.add(new InventoryOverylay());

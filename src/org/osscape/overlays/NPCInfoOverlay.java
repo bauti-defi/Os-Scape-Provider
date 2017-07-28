@@ -1,5 +1,6 @@
 package org.osscape.overlays;
 
+import org.bot.Engine;
 import org.bot.component.screen.ScreenOverlay;
 import org.bot.util.Filter;
 import org.osscape.api.data.Game;
@@ -25,7 +26,7 @@ public class NPCInfoOverlay extends ScreenOverlay<NPC> {
 
 	@Override
 	public boolean activate() {
-		return Game.isLoggedIn() && org.osscape.util.Utilities.isDebugNpcs();
+		return Game.isLoggedIn() && Engine.getServerProvider().isDebugNPCs();
 	}
 
 	@Override

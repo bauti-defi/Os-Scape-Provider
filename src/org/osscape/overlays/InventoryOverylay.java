@@ -1,5 +1,6 @@
 package org.osscape.overlays;
 
+import org.bot.Engine;
 import org.bot.component.screen.ScreenOverlay;
 import org.bot.util.Filter;
 import org.osscape.api.data.Game;
@@ -25,7 +26,7 @@ public class InventoryOverylay extends ScreenOverlay<Item> {
 
 	@Override
 	public boolean activate() {
-		return org.osscape.util.Utilities.isDebugInventory() && Game.isLoggedIn();
+		return Engine.getServerProvider().isDebugInventory() && Game.isLoggedIn();
 	}
 
 	@Override
